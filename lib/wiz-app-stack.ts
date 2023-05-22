@@ -56,17 +56,13 @@ export class WizAppStack extends cdk.Stack {
       prune: true,
     });
     
+    // CloudFront Origin Access Identity
+    const cloudfrontOAI = new cloudfront.OriginAccessIdentity(this, 'cloudfrontOAI');
+
     // CloudFront distribution
-    const distribution = new cloudfront.Distribution(this, 'wizardStaticDistribution', {
-      defaultBehavior: { origin: new cloudfront_origins.S3Origin(frontendBucket) },
+    new cloudfront.Distribution(this, 'wizardStaticDistribution', {
+      defaultBehavior: { origin: new cloudfront_origins.S3Origin(frontendBucket, { originAccessIdentity: cloudfrontOAI }) },
     });
-
-    // const cloudfrontOAI = new cloudfront.OriginAccessIdentity(this, 'cloudfrontOAI');
-
-    // // CloudFront distribution
-    // new cloudfront.Distribution(this, 'wizardStaticDistribution', {
-    //   defaultBehavior: { origin: new cloudfront_origins.S3Origin(frontendBucket, { originAccessIdentity: cloudfrontOAI }) },
-    // });
 
   }
 }
