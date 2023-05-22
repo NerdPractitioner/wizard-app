@@ -8,7 +8,16 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "install:all": "npm install && run-p install:api install:ui",
+    "install:api": "cd api && npm install",
+    "install:ui": "cd frontend && npm install",
+    "start": "run-p start:api start:ui",
+    "start:api": "cd api && nodemon ./index.js",
+    "start:ui": "cd frontend && npm start",
+    "test:all": "run-s test:api test:ui",
+    "test:api": "cd api && npm test",
+    "test:ui": "cd frontend && npm test"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",
@@ -23,5 +32,11 @@
     "aws-cdk-lib": "2.80.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
+  },
+  
+  "resolutions": {
+    "**/frontend/babel-jest": "^26.6.0"
   }
+  
+
 }
