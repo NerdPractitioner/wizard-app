@@ -2,6 +2,7 @@
 This is a CDK project that deploys the Character Creator application to AWS. It is a work in progress. 
 The frontend is deployed to AWS S3 and the backend is deployed as a Lambda function behind an API Gateway.
 Cloudfront is used to serve the frontend from S3 and to proxy requests to the API Gateway.
+The Primary CDK code for the project can be viewed in wiz-app-stack.ts
 
 ## Requirements
 [Node](nodejs.org) version 12 or higher.
